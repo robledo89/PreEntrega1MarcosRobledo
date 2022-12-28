@@ -1,3 +1,9 @@
+// VARIABLES GLOBALES PARA AGREGADOS DE HABITACION
+let queEligio1 = "***"
+let queEligio2 = "***"
+let queEligio3 = "***"
+
+
 // FUNCION - MENU PRINCIPAL
 function mainMenu() {
     let habitacionOK = false
@@ -10,7 +16,7 @@ function mainMenu() {
         switch (opMenu) {
             case 1:
                 if (subTotal != 0) {
-                    alert("ATENCIÓN - Ya tiene reserva de HABITACIÓN\nPresione una tecla para VOLVER")
+                    alert("ATENCIÓN - Ya tiene reserva de HABITACIÓN\n\nPresione una tecla para VOLVER")
                 } else {
                     subTotal = subTotal + reservaHab()
                     alert("El sub-total por su reserva es: " + subTotal)
@@ -22,27 +28,27 @@ function mainMenu() {
                     subTotal = subTotal + totalAgregados()
                     alert("El sub-total por su reserva es: " + subTotal)
                 } else {
-                    alert("Por favor primero realice la reserva de HABITACIÓN\nPresione una tecla para VOLVER")
+                    alert("Por favor primero realice la reserva de HABITACIÓN\n\nPresione una tecla para VOLVER")
                 }
                 break
             case 3:
                 if (habitacionOK) {
                     totalFinal = subTotal
-                    alert("[LOADING...] Realizando Check-Out \n\nEl total por su compra es: " + totalFinal + " (más IVA)")
+                    alert("[LOADING...] Realizando Check-Out\n\nAgregados: "+queEligio1+", "+queEligio2+", "+queEligio3+"\n\nEl total por su compra es: " + totalFinal + " (más IVA)")
                 } else {
-                    alert("Por favor primero realice la reserva de HABITACIÓN\nPresione una tecla para VOLVER")
+                    alert("Por favor primero realice la reserva de HABITACIÓN\n\nPresione una tecla para VOLVER")
                 }
                 break
             case 4:
                 if (habitacionOK) {
                     totalFinal = subTotal
-                    alert("Muchas gracias por elegirnos, los esperamos!\n\n::: HOTEL RELAX - PUNTA DEL ESTE :::\n\nRecuerde abonar al llegar: " + totalFinal * 1.22 + " (IVA inc.)")
+                    alert("Muchas gracias por elegirnos, los esperamos!\n\n::: HOTEL RELAX - PUNTA DEL ESTE :::\n\nAgregados: "+queEligio1+", "+queEligio2+", "+queEligio3+"\n\nRecuerde abonar al llegar: " + totalFinal * 1.22 + " (IVA inc.)")
                 } else {
                     alert("\nLos esperamos cuando sea de su agrado :)\n\n::: HOTEL RELAX - PUNTA DEL ESTE :::")
                 }
                 break
             // OPCION INVALIDA
-            default: alert("Opción inválida, por favor intente de nuevo")
+            default: alert("(X) Opción inválida, por favor intente de nuevo")
         }
     } while (opMenu != 4)
 };
@@ -77,21 +83,35 @@ function totalAgregados() {
     let agregadosTotal = 0
     let agregados = prompt("::: AGREGADOS :::\nSeleccione el agregado para su reserva\n\n(1) Wifi 24/7 = $1.000\n(2) Servicio de limpieza = $1.500\n(3) Desayuno continental = $2.000\n(4) Volver al menú principal\n\nIngrese las opciones deseadas: ")
     agregados = parseInt(agregados)
+    //queEligio = parseInt(queEligio)
     do {
         switch (agregados) {
-            case 1: 
-            if (agregadosTotal == 1000){
-                agregadosTotal = 1000
-                alert("Agregó el servicio WIFI a su reserva")
-            }else {
-                alert("Ya eligió este agregado")
-            }
+            case 1:
+                if (queEligio1 != "wifi") {
+                    agregadosTotal = 1000
+                    alert("Agregó el servicio WIFI a su reserva")
+                    queEligio1 = "wifi"
+                } else {
+                    alert("Ya eligió el agregado: " + queEligio1 + "\n\nPresione una tecla para VOLVER")
+                }
                 break
-            case 2: agregadosTotal = 1500
-                alert("Agregó el servicio LIMPIEZA a su reserva")
+            case 2:
+                if (queEligio2 != "limpieza") {
+                    agregadosTotal = 1500
+                    alert("Agregó el servicio LIMPIEZA a su reserva")
+                    queEligio2 = "limpieza"
+                } else {
+                    alert("Ya eligió el agregado: " + queEligio2 + "\n\nPresione una tecla para VOLVER")
+                }
                 break
-            case 3: agregadosTotal = 2000
-                alert("Agregó el servicio DESAYUNO a su reserva")
+            case 3:
+                if (queEligio3 != "desayuno") {
+                    agregadosTotal = 2000
+                    alert("Agregó el servicio DESAYUNO a su reserva")
+                    queEligio3 = "desayuno"
+                } else {
+                    alert("Ya eligió el agregado: " + queEligio3 + "\n\nPresione una tecla para VOLVER")
+                }
                 break
             case 4: alert("Volviendo al MENÚ PRINCIPAL - Aguarde por favor...")
                 break
